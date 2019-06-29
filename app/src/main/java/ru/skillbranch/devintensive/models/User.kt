@@ -1,6 +1,6 @@
-package ru.pavelq.dev_intensive.models
+package ru.skillbranch.devintensive.models
 
-import ru.pavelq.dev_intensive.utils.Utils
+import ru.skillbranch.devintensive.utils.Utils
 import java.util.*
 
 data class User(
@@ -51,7 +51,11 @@ data class User(
             lastId++
 
             val (firstName, lastName) = Utils.parseFullName(fullName)
-            return User(lastId.toString(), firstName = firstName, lastName = lastName);
+            return User(
+                lastId.toString(),
+                firstName = firstName,
+                lastName = lastName
+            );
         }
     }
 

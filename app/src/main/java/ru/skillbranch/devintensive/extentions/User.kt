@@ -1,8 +1,8 @@
-package ru.pavelq.dev_intensive.extentions
+package ru.skillbranch.devintensive.extentions
 
-import ru.pavelq.dev_intensive.models.User
-import ru.pavelq.dev_intensive.models.UserView
-import ru.pavelq.dev_intensive.utils.Utils
+import ru.skillbranch.devintensive.models.User
+import ru.skillbranch.devintensive.models.UserView
+import ru.skillbranch.devintensive.utils.Utils
 
 fun User.toUserView(): UserView? {
 

@@ -1,6 +1,6 @@
-package ru.pavelq.dev_intensive.models
+package ru.skillbranch.devintensive.models
 
-import ru.pavelq.dev_intensive.extentions.humanizeDiff
+import ru.skillbranch.devintensive.extentions.humanizeDiff
 import java.util.*
 
 class ImageMessage(

@@ -1,7 +1,8 @@
-package ru.pavelq.dev_intensive
+package ru.skillbranch.devintensive
 
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import ru.pavelq.dev_intensive.R
 
 class MainActivity : AppCompatActivity() {
 

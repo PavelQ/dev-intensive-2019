@@ -1,4 +1,4 @@
-package ru.pavelq.dev_intensive.utils
+package ru.skillbranch.devintensive.utils
 
 object Utils {
 
@@ -29,10 +29,11 @@ object Utils {
         for (char in word) {
             val wasUpper = char.isUpperCase()
             val loverChar = if (wasUpper) char.toLowerCase() else char
-            var trCrar = transliterationMap[loverChar.toString()]
-            if (trCrar != null) {
-                if (wasUpper) trCrar = trCrar.toUpperCase()
-                builder.append(trCrar)
+            var trChar = transliterationMap[loverChar.toString()]
+            if (trChar != null) {
+                if (wasUpper)
+                    trChar = trChar[0].toUpperCase() + trChar.substring(1)
+                builder.append(trChar)
             } else
                 builder.append(char)
         }
@@ -43,7 +44,9 @@ object Utils {
         if (firstName.isNullOrBlank() && lastName.isNullOrBlank()) return null
         else if (firstName.isNullOrBlank()) return toInitial(lastName!!)
         else if (lastName.isNullOrBlank()) return toInitial(firstName)
-        else return toInitial(firstName) + toInitial(lastName)
+        else return toInitial(firstName) + toInitial(
+            lastName
+        )
     }
 
     fun toInitial(name: String): String {

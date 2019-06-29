@@ -1,4 +1,4 @@
-package ru.pavelq.dev_intensive.extentions
+package ru.skillbranch.devintensive.extentions
 
 import java.text.SimpleDateFormat
 import java.util.*
@@ -40,11 +40,20 @@ fun Date.humanizeDiff(date: Date = this): String {
             in 0..SECOND -> "сейчас будет"
             in SECOND..45 * SECOND -> "через несколько"
             in 45 * SECOND..75 * SECOND -> "через минуту"
-            in 75 * SECOND..45 * MINUTE -> "через ${wordFormCorrecter(difTime / MINUTE, TimeUnits.MINUTE)}"
+            in 75 * SECOND..45 * MINUTE -> "через ${wordFormCorrecter(
+                difTime / MINUTE,
+                TimeUnits.MINUTE
+            )}"
             in 45 * MINUTE..75 * MINUTE -> "через час"
-            in 75 * MINUTE..22 * HOUR -> "через ${wordFormCorrecter(difTime / HOUR, TimeUnits.HOUR)}"
+            in 75 * MINUTE..22 * HOUR -> "через ${wordFormCorrecter(
+                difTime / HOUR,
+                TimeUnits.HOUR
+            )}"
             in 22 * HOUR..26 * HOUR -> "через день"
-            in 26 * HOUR..360 * DAY -> "через ${wordFormCorrecter(difTime / DAY, TimeUnits.DAY)}"
+            in 26 * HOUR..360 * DAY -> "через ${wordFormCorrecter(
+                difTime / DAY,
+                TimeUnits.DAY
+            )}"
             else -> "более чем через год"
         }
     }
@@ -52,11 +61,20 @@ fun Date.humanizeDiff(date: Date = this): String {
         in 0..SECOND -> "только что"
         in SECOND..45 * SECOND -> "несколько секунд назад"
         in 45 * SECOND..75 * SECOND -> "минуту назад"
-        in 75 * SECOND..45 * MINUTE -> "${wordFormCorrecter(difTime / MINUTE, TimeUnits.MINUTE)} назад"
+        in 75 * SECOND..45 * MINUTE -> "${wordFormCorrecter(
+            difTime / MINUTE,
+            TimeUnits.MINUTE
+        )} назад"
         in 45 * MINUTE..75 * MINUTE -> "час назад"
-        in 75 * MINUTE..22 * HOUR -> "${wordFormCorrecter(difTime / HOUR, TimeUnits.HOUR)} назад"
+        in 75 * MINUTE..22 * HOUR -> "${wordFormCorrecter(
+            difTime / HOUR,
+            TimeUnits.HOUR
+        )} назад"
         in 22 * HOUR..26 * HOUR -> "день назад"
-        in 26 * HOUR..360 * DAY -> "${wordFormCorrecter(difTime / DAY, TimeUnits.DAY)} назад"
+        in 26 * HOUR..360 * DAY -> "${wordFormCorrecter(
+            difTime / DAY,
+            TimeUnits.DAY
+        )} назад"
         else -> "более года назад"
     }
 }
