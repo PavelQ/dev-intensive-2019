@@ -10,7 +10,7 @@ abstract class BaseMessage(
     val date: Date = Date()
 ) {
 
-    abstract fun formatMessage():String
+    abstract fun formatMessage(): String
 
     companion object AbstractFactory {
         var lastId = -1
@@ -19,12 +19,13 @@ abstract class BaseMessage(
             chat: Chat,
             date: Date = Date(),
             type: String = "text",
-            payload: Any?
+            payload: Any?,
+            isIncoming: Boolean = false
         ): BaseMessage {
             lastId++
             return when (type) {
-                "image" -> ImageMessage("$lastId", from, chat, date = date, image = payload as String)
-                else -> TextMessage("$lastId", from, chat, date = date, text = payload as String)
+                "image" -> ImageMessage("$lastId", from, chat, isIncoming, date = date, image = payload as String)
+                else -> TextMessage("$lastId", from, chat, isIncoming, date = date, text = payload as String)
             }
 
         }
