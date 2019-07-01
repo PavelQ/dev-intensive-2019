@@ -45,4 +45,8 @@ abstract class BaseMessage(
         }
     }
 
+    override fun toString(): String {
+        return this.formatMessage()
+    }
+
 }
