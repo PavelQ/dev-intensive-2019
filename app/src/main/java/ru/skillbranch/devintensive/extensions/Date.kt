@@ -80,7 +80,23 @@ fun Date.humanizeDiff(date: Date = this): String {
 }
 
 fun wordFormCorrecter(count: Long, timeUnit: TimeUnits): String {
+    return wordFormCorrecter(count.toInt(), timeUnit)
+}
+
+fun wordFormCorrecter(count: Int, timeUnit: TimeUnits): String {
     //10-19
+    if (TimeUnits.SECOND == timeUnit) {
+        val result =
+            when (count) {
+                in 0..1 -> "только что"
+                in 2..45 -> "несколько секунд"
+                else -> null
+            }
+        if (result != null) {
+            return result
+        }
+
+    }
     if (count / 10L == 1L) {
         return "$count " +
                 when (timeUnit) {
@@ -93,7 +109,7 @@ fun wordFormCorrecter(count: Long, timeUnit: TimeUnits): String {
 
     return "$count " +
             when (count % 10) {
-                1L -> when (timeUnit) {
+                1 -> when (timeUnit) {
                     TimeUnits.MINUTE -> "минуту"
                     TimeUnits.HOUR -> "час"
                     TimeUnits.DAY -> "день"
@@ -105,7 +121,7 @@ fun wordFormCorrecter(count: Long, timeUnit: TimeUnits): String {
                     TimeUnits.DAY -> "дня"
                     else -> IllegalArgumentException("wrong count : $count, unit: $timeUnit")
                 }
-                in 5..9, 0L -> when (timeUnit) {
+                in 5..9, 0 -> when (timeUnit) {
                     TimeUnits.MINUTE -> "минут"
                     TimeUnits.HOUR -> "часов"
                     TimeUnits.DAY -> "дней"
@@ -120,5 +136,41 @@ enum class TimeUnits {
     SECOND,
     MINUTE,
     HOUR,
-    DAY
+    DAY;
+
+    fun plural(value: Int): String {
+        if (value / 10L == 1L) {
+            return "$value " +
+                    when (this) {
+                        SECOND -> "секунд"
+                        MINUTE -> "минут"
+                        HOUR -> "часов"
+                        DAY -> "дней"
+                    }
+        }
+
+        return "$value " +
+                when (value % 10) {
+                    1 -> when (this) {
+                        SECOND -> "секунду"
+                        MINUTE -> "минуту"
+                        HOUR -> "час"
+                        DAY -> "день"
+                    }
+                    in 2..4 -> when (this) {
+                        SECOND -> "секунды"
+                        MINUTE -> "минуты"
+                        HOUR -> "часа"
+                        DAY -> "дня"
+                    }
+                    in 5..9, 0 -> when (this) {
+                        SECOND -> "секунд"
+                        MINUTE -> "минут"
+                        HOUR -> "часов"
+                        DAY -> "дней"
+                    }
+                    else -> IllegalArgumentException("wrong count : $value, unit: $this")
+
+                }
+    }
 }
