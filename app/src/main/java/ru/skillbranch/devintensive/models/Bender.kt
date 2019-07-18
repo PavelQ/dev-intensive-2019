@@ -1,9 +1,11 @@
 package ru.skillbranch.devintensive.models
 
+import android.util.Log
+
 class Bender(var status: Status = Status.NORMAL, var question: Question = Question.NAME) {
 
-    fun askQuestion(): String = when (question) {
-
+    fun askQuestion(): String =
+        when (question) {
         Question.NAME -> Question.NAME.question
         Question.PROFESSION -> Question.PROFESSION.question
         Question.MATERIAL -> Question.MATERIAL.question
@@ -13,7 +15,12 @@ class Bender(var status: Status = Status.NORMAL, var question: Question = Questi
     }
 
     fun listenAnswer(answer: String): Pair<String, Triple<Int, Int, Int>> {
-        if (question.answers.contains(answer)) {
+        val (validityResult, validityText) = checkAnswerValidity(answer)
+        if(!validityResult){
+            Log.d("M_Bender.kt","listenAnswer incorrect: $validityResult, $validityText")
+            return "$validityText\n${question.question}" to status.color
+        }
+        if (question.answers.contains(answer.toLowerCase())) {
             question = question.nextQuestion()
             return "Отлично - ты справился\n${question.question}" to status.color
         } else {
@@ -25,6 +32,18 @@ class Bender(var status: Status = Status.NORMAL, var question: Question = Questi
                 status = status.nextStatus()
                 return "Это неправильный ответ\n${question.question}" to status.color
             }
+        }
+    }
+
+    fun checkAnswerValidity(answer: String): Pair<Boolean, String?> {
+//        Log.d("M_Bender.kt","checkAnswerValidity")
+        return when (question) {
+            Question.NAME -> Pair(answer.first().isUpperCase(), "Имя должно начинаться с заглавной буквы")
+            Question.PROFESSION -> Pair(answer.first().isLowerCase(), "Профессия должна начинаться со строчной буквы")
+            Question.MATERIAL -> Pair(!answer.contains(Regex("\\d")), "Материал не должен содержать цифр")
+            Question.BDAY -> Pair(answer.matches(Regex("\\d")), "Год моего рождения должен содержать только цифры")
+            Question.SERIAL -> Pair(answer.matches(Regex("\\d{7}")), "Серийный номер содержит только цифры, и их 7")
+            Question.IDLE -> Pair(true, null)
         }
     }
 
