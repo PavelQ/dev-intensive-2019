@@ -41,7 +41,7 @@ class Bender(var status: Status = Status.NORMAL, var question: Question = Questi
             Question.NAME -> Pair(answer.isNotEmpty() && answer.first().isUpperCase(), "Имя должно начинаться с заглавной буквы")
             Question.PROFESSION -> Pair(answer.isNotEmpty() && answer.first().isLowerCase(), "Профессия должна начинаться со строчной буквы")
             Question.MATERIAL -> Pair(!answer.contains(Regex("\\d")), "Материал не должен содержать цифр")
-            Question.BDAY -> Pair(answer.matches(Regex("\\d")), "Год моего рождения должен содержать только цифры")
+            Question.BDAY -> Pair(answer.matches(Regex("\\d*")), "Год моего рождения должен содержать только цифры")
             Question.SERIAL -> Pair(answer.matches(Regex("\\d{7}")), "Серийный номер содержит только цифры, и их 7")
             Question.IDLE -> Pair(true, null)
         }
