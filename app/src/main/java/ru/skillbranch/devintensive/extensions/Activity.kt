@@ -4,7 +4,7 @@ import android.app.Activity
 import android.graphics.Rect
 import android.util.Log
 import android.view.View
-import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.activity_profile.*
 
 
 fun Activity.hideKeyboard() {
