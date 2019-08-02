@@ -104,8 +104,10 @@ class ProfileActivity : AppCompatActivity() {
                 if (!isValid) {
                     val errorMessage = "Невалидный адрес репозитория"
                     wr_repository.error = errorMessage
+                    wr_repository.isErrorEnabled = true
                 } else {
                     wr_repository.error = ""
+                    wr_repository.isErrorEnabled = false
                 }
             }
 
@@ -152,6 +154,7 @@ class ProfileActivity : AppCompatActivity() {
         if (!wr_repository.error.isNullOrEmpty()) {
             et_repository.text.clear()
             wr_repository.error = ""
+            wr_repository.isErrorEnabled = false
         }
 
         Profile(
