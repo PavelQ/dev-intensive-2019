@@ -53,6 +53,14 @@ object Utils {
         return name.first().toUpperCase().toString()
     }
 
+    fun validateGithub(link: String): Boolean {
+        if (link.isEmpty()) return true
+
+        val excludes = arrayOf("enterprise", "pricing", "join")
+            .joinToString("|")
+        val regex = "^(https://)?(www\\.)?(github\\.com/)(?!$excludes)(\\w)+(\\w)*(?!/)\$".toRegex()
+        return link.matches(regex)
+    }
 
     private val transliterationMap = initTransliterationMap()
 
