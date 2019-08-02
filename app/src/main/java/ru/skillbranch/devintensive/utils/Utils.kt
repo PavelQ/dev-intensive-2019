@@ -56,9 +56,10 @@ object Utils {
     fun validateGithub(link: String): Boolean {
         if (link.isEmpty()) return true
 
-        val excludes = arrayOf("enterprise", "pricing", "join")
+        val excludes =
+            arrayOf("enterprise", "pricing", "join")
             .joinToString("|")
-        val regex = "^(https://)?(www\\.)?(github\\.com/)(?!$excludes)(\\w)+(\\w)*(?!/)\$".toRegex()
+        val regex = "^(https://)?(www\\.)?(github\\.com/)(?!$excludes)(\\w)[\\w\\d\\-_]*(?!/)\$".toRegex()
         return link.matches(regex)
     }
 
