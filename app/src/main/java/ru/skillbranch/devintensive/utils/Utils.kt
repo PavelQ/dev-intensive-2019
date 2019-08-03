@@ -61,7 +61,7 @@ object Utils {
                 "explore", "integrations", "marketplace", "trending", "dashboard", "logout", "notifications",
                 "new", "organizations", "users", "autocomplete", "suggestions", "settings", "dashboard-feed",
                 "watching", "security", "features", "topics", "collections", "events", "pricing",
-                "nonprofit", "customer-stories", "login"
+                "nonprofit", "customer-stories"
             )
             .joinToString("|")
         val regex = "^(https://)?(www\\.)?(github\\.com/)(?!$excludes)(\\w)[\\w\\d\\-_]*(?!/)\$".toRegex()
