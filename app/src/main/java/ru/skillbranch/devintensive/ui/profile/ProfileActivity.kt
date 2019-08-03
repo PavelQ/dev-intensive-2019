@@ -94,24 +94,29 @@ class ProfileActivity : AppCompatActivity() {
 
         et_repository.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+                repoScrollDown()
             }
 
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+                repoScrollDown()
             }
 
             override fun afterTextChanged(s: Editable?) {
                 val isValid = Utils.validateGithub(s.toString())
                 if (!isValid) {
                     val errorMessage = "Невалидный адрес репозитория"
+                    repoScrollDown()
                     wr_repository.error = errorMessage
-                    wr_repository.isErrorEnabled = true
                 } else {
                     wr_repository.error = ""
-                    wr_repository.isErrorEnabled = false
                 }
             }
 
         })
+    }
+
+    private fun repoScrollDown() {
+        sv_repo_scroll.fullScroll(View.FOCUS_DOWN)
     }
 
     private fun showCurrentMode(isEdit: Boolean) {
@@ -151,10 +156,9 @@ class ProfileActivity : AppCompatActivity() {
     }
 
     private fun saveProfileInfo() {
-        if (!wr_repository.error.isNullOrEmpty()) {
+        if (!wr_repository.isErrorEnabled) {
             et_repository.text.clear()
             wr_repository.error = ""
-            wr_repository.isErrorEnabled = false
         }
 
         Profile(
