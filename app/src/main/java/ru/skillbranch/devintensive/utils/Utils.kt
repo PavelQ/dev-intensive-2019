@@ -57,7 +57,9 @@ object Utils {
         if (link.isEmpty()) return true
 
         val excludes =
-            arrayOf("enterprise", "pricing", "join")
+            arrayOf("enterprise", "pricing", "join","about","contact", "site", "login", "pulls", "issues",
+                "explore", "integrations", "marketplace", "trending", "dashboard", "logout", "notifications",
+                "new", "organizations", "users", "autocomplete", "suggestions", "settings", "dashboard-feed", "watching")
             .joinToString("|")
         val regex = "^(https://)?(www\\.)?(github\\.com/)(?!$excludes)(\\w)[\\w\\d\\-_]*(?!/)\$".toRegex()
         return link.matches(regex)
