@@ -156,7 +156,7 @@ class ProfileActivity : AppCompatActivity() {
     }
 
     private fun saveProfileInfo() {
-        if (!wr_repository.isErrorEnabled) {
+        if (wr_repository.isErrorEnabled) {
             et_repository.text.clear()
             wr_repository.error = ""
         }
