@@ -5,14 +5,13 @@ import android.graphics.Color
 import android.util.AttributeSet
 import androidx.annotation.ColorRes
 import androidx.annotation.Dimension
-import de.hdodenhof.circleimageview.CircleImageView
 import ru.skillbranch.devintensive.R
 
 class CircleImageView @JvmOverloads constructor(
     context: Context,
     attrs: AttributeSet? = null,
     defStyleAttr: Int = 0
-) : CircleImageView(context, attrs, defStyleAttr) {
+) : de.hdodenhof.circleimageview.CircleImageView(context, attrs, defStyleAttr) {
 
     companion object{
         private const val DEFAULT_BORDER_WIDTH = 2f
